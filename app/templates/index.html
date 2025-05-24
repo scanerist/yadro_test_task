@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Пользователи</h1>
+    <form method="post" action="/users/fetch" id="fetch-form">
+        <label>Сколько пользователей загрузить:
+            <input type="number" name="count" min="1" max="5000" value="1000">
+        </label>
+        <button type="submit">Загрузить</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Фото</th>
+                <th>Пол</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Телефон</th>
+                <th>Email</th>
+                <th>Место проживания</th>
+                <th>Подробнее</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><img src="{{ user.picture }}" alt="Фото"></td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.location }}</td>
+                <td><a href="/users/{{ user.id }}">Открыть</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="/?page={{ page - 1 }}&per_page={{ per_page }}">Назад</a>
+        {% endif %}
+        <span>Страница {{ page }}</span>
+        {% if users|length == per_page %}
+            <a href="/?page={{ page + 1 }}&per_page={{ per_page }}">Вперёд</a>
+        {% endif %}
+    </div>
+    <a href="users/random">Случайный пользователь</a>
+</body>
+</html> 

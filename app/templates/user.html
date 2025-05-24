@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.first_name }} {{ user.last_name }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+    <img src="{{ user.picture }}" alt="Фото">
+    <ul>
+        <li><b>Пол:</b> {{ user.gender }}</li>
+        <li><b>Телефон:</b> {{ user.phone }}</li>
+        <li><b>Email:</b> {{ user.email }}</li>
+        <li><b>Место проживания:</b> {{ user.location }}</li>
+    </ul>
+    <a href="/">Назад к списку</a>
+    <a href="users/random">Случайный пользователь</a>
+</body>
+</html> 
